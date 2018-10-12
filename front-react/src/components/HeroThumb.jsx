@@ -8,7 +8,7 @@ class HeroThumb extends Component {
     this.state = {
       hero: props.heroData,
       filter: props.filter,
-      displayStyle: props.displayStyle // grid | seamless
+      displayStyle: props.displayStyle
     };
   }
   render() {

@@ -3,7 +3,7 @@ import HeroThumb from './HeroThumb';
 
 const DEFAULT_STATE = {
   sort: 'level', // id | name | level | class | race
-  displayStyle: 'grid' // seamless | grid
+  displayStyle: 'seamless' // seamless | grid
 };
 class HeroCollection extends Component {
   constructor(props) {
