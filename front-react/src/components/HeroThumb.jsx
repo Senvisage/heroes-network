@@ -26,14 +26,14 @@ class HeroThumb extends Component {
               <p className="card-text">
                 Lorem ipsum dolor sit amet, non consequitur.
               </p>
-              <Button href={`/hero/${this.state.hero.name}`}>Details</Button>
+              <Button href={`/heroes/${this.state.hero.name}`}>Details</Button>
             </div>
           </div>
         );
       case 'seamless':
         return (
           <div className="card col-sm-12 col-md-6 col-lg-3 p-0 border-0">
-            <a href={`/hero/${this.state.hero.name}`}>
+            <a href={`/heroes/${this.state.hero.name}`}>
               <img
                 className="card-img-top"
                 src={this.state.hero.pictureUrl}

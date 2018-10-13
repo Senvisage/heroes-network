@@ -44,6 +44,9 @@ class MyNavbar extends Component {
               />
             </NavItem>
             <NavItem>
+              <NavLink href="/heroes/">Heroes</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/blog/">Blog</NavLink>
             </NavItem>
             <NavItem>
