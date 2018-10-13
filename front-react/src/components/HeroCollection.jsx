@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 import HeroThumb from './HeroThumb';
+const axios = require('axios');
 
 const DEFAULT_STATE = {
   sort: 'level', // id | name | level | class | race
-  displayStyle: 'seamless' // seamless | grid
+  displayStyle: 'seamless', // seamless | grid
+  heroes: []
 };
 class HeroCollection extends Component {
   constructor(props) {
     super(props);
-    this.state = { heroes: props.heroesData, ...DEFAULT_STATE };
+    this.state = { ...DEFAULT_STATE };
+  }
+
+  componentDidMount() {
+    axios
+      .create({
+        baseURL: 'http://localhost:8080/',
+        timeout: 1000
+      })
+      .get('/heroes')
+      .then(response => {
+        const heroes = response.data;
+        this.setState({ heroes });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
