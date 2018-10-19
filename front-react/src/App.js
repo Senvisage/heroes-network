@@ -31,7 +31,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/heroes/Scene" component={HeroDetails} />
+          <Route path="/heroes/:name" component={HeroDetails} />
           <Route exact path="/blog" component={Blog} />
           <Route
             exact
