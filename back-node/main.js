@@ -44,13 +44,16 @@ app
     }
   })
   // One middleware to take care of CORS
-  .options('/*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  .all('/*', function(req, res, next) {
     res.header(
       'Access-Control-Allow-Headers',
       'Access-Control-Allow-Origin, Content-Type, Authorization, Content-Length, X-Requested-With'
     );
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    next();
+  })
+  .options('/*', function(req, res) {
     res.status(200).send();
   })
   // ----- ROUTING
@@ -59,12 +62,18 @@ app
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send(JSON.stringify(heroesData));
   })
-  .get('/heroes/:id', function(req, res) {
-    console.log(`Request for hero #${req.params.id}`);
-    if (heroesData[req.params.id] !== undefined) {
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).send(JSON.stringify(heroesData[req.params.id]));
-    } else {
+  .get('/heroes/:query', function(req, res) {
+    console.log(`Request for hero #${req.params.query}`);
+    let foundHero = false;
+
+    heroesData.map(heroData => {
+      if (heroData.name == req.params.query) {
+        foundHero = true;
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(JSON.stringify(heroData));
+      }
+    });
+    if (!foundHero) {
       res.setHeader('Content-Type', 'text/plain');
       res.status(404).send('Heros introuvable !');
     }
@@ -74,5 +83,7 @@ app
     res.setHeader('Content-Type', 'text/plain');
     res.status(404).send('Page introuvable !');
   });
+
 // Our server listens to the 8080 port
+console.log("We're now listening on http://localhost:8080 ...");
 app.listen(8080);
