@@ -1,4 +1,13 @@
-img {
+.heroThumb img {
   height: 400px;
   object-fit: cover;
+  transition: 0.5s all;
+}
+
+.heroThumb img:hover {
+  transform: scale(1.1);
+}
+
+.heroThumb .img-wrapper {
+  overflow: hidden;
 }

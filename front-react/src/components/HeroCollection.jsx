@@ -62,7 +62,6 @@ class HeroCollection extends Component {
               <HeroThumb
                 key={hero.id}
                 heroData={hero}
-                filter={this.state.filter}
                 displayStyle={this.state.displayStyle}
               />
             );
